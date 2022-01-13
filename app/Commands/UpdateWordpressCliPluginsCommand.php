@@ -2,7 +2,9 @@
 
 namespace App\Commands;
 
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Str;
 use LaravelZero\Framework\Commands\Command;
 
 class UpdateWordpressCliPluginsCommand extends Command
@@ -28,8 +30,13 @@ class UpdateWordpressCliPluginsCommand extends Command
      */
     public function handle()
     {
-        // HEY REMEMBER TO DELETE THIS
-        exec('git reset --hard');
+        if ($this->workingDirectoryIsDirty()) {
+            $this->error('☠️  The working directory is dirty, please commit or stash your changes before running this command.');
+            return;
+        }
+
+        $now = Carbon::now();
+        exec("git checkout -b plugin-updates/{$now->format('Y-m-d')}");
 
         // ask wordpress cli for the list of current plugins in json format
         exec('wp plugin list --format=json', $plugins);
@@ -58,11 +65,13 @@ class UpdateWordpressCliPluginsCommand extends Command
             exec('git add -A');
             exec("git commit -m '{$commitMessage}'", $output);
 
-            dump($output);
-
             $this->info("✅ {$updated}");
         });
+    }
 
+    public function workingDirectoryIsDirty()
+    {
+        return ! ! exec("git status --porcelain");
     }
 
     /**
