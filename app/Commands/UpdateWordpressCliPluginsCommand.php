@@ -2,6 +2,7 @@
 
 namespace App\Commands;
 
+use App\Commands\Concerns\InteractsWithGit;
 use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Str;
@@ -9,6 +10,8 @@ use LaravelZero\Framework\Commands\Command;
 
 class UpdateWordpressCliPluginsCommand extends Command
 {
+    use InteractsWithGit;
+
     /**
      * The signature of the command.
      *
@@ -35,8 +38,7 @@ class UpdateWordpressCliPluginsCommand extends Command
             return;
         }
 
-        $now = Carbon::now();
-        exec("git checkout -b plugin-updates/{$now->format('Y-m-d')}");
+        $branchName = $this->checkoutNewBranchForDate();
 
         // ask wordpress cli for the list of current plugins in json format
         exec('wp plugin list --format=json', $plugins);
