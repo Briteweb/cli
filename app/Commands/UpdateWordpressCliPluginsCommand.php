@@ -3,9 +3,7 @@
 namespace App\Commands;
 
 use App\Commands\Concerns\InteractsWithGit;
-use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Support\Str;
 use LaravelZero\Framework\Commands\Command;
 
 class UpdateWordpressCliPluginsCommand extends Command
@@ -71,7 +69,7 @@ class UpdateWordpressCliPluginsCommand extends Command
         });
     }
 
-    public function workingDirectoryIsDirty()
+    public function workingDirectoryIsDirty(): bool
     {
         return ! ! exec("git status --porcelain");
     }
