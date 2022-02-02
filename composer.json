@@ -1,18 +1,18 @@
 {
-    "name": "laravel-zero/laravel-zero",
+    "name": "briteweb/bw-cli",
     "description": "The Laravel Zero Framework.",
-    "keywords": ["framework", "laravel", "laravel zero", "console", "cli"],
-    "homepage": "https://laravel-zero.com",
+    "keywords": ["wordpress", "laravel zero", "console", "cli"],
+    "homepage": "https://github.com/briteweb/bw-cli",
     "type": "project",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/laravel-zero/laravel-zero/issues",
-        "source": "https://github.com/laravel-zero/laravel-zero"
+        "issues": "https://github.com/briteweb/bw-cli/issues",
+        "source": "https://github.com/briteweb/bw-cli"
     },
     "authors": [
         {
-            "name": "Nuno Maduro",
-            "email": "enunomaduro@gmail.com"
+            "name": "Lindsay Stewart",
+            "email": "lindsay.stewart@briteweb.com"
         }
     ],
     "require": {
