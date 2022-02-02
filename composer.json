@@ -4,7 +4,7 @@
     "description": "The Laravel Zero Framework.",
     "keywords": ["wordpress", "laravel zero", "console", "cli"],
     "homepage": "https://github.com/briteweb/bw-cli",
-    "type": "project",
+    "type": "library",
     "license": "MIT",
     "support": {
         "issues": "https://github.com/briteweb/bw-cli/issues",
